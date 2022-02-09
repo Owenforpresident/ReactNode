@@ -6,13 +6,14 @@ const express = require('express');        // call express
 const app = express();                 // define our app using express
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const pug = require('pug');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 app.use(bodyParser.json());
-
+app.set("view engine", "pug");
 const port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
@@ -35,6 +36,14 @@ app.get('/', function (req, res) {
         "title": "eum et est occaecati", 
         "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit" }]);
 });
+
+app.get('/page', function (req, res) {
+    res.render('index', {
+        name:'Mchugh'
+    })
+
+})
+
 
 // more routes for our API will happen here
 
